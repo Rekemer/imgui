@@ -2,11 +2,13 @@ project "ImGui"
 	kind "StaticLib"
 	language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
+		"*.cpp",
+		"*.h",
 		"imconfig.h",
 		"imgui.h",
 		"imgui.cpp",
@@ -16,7 +18,17 @@ project "ImGui"
 		"imstb_rectpack.h",
 		"imstb_textedit.h",
 		"imstb_truetype.h",
-		"imgui_demo.cpp"
+		"imgui_demo.cpp",
+		"backends/imgui_impl_opengl3.cpp",
+		"backends/imgui_impl_opengl3.h",
+		"backends/imgui_impl_glfw.h",
+		"backends/imgui_impl_glfw.cpp",
+	}
+	includedirs
+	{
+		"%{prj.location}",
+		"%{IncludeDir.GLFW}"
+
 	}
 
 	filter "system:windows"
