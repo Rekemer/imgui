@@ -20,17 +20,24 @@ project "ImGui"
 		"imstb_truetype.h",
 		"imgui_demo.cpp",
 		"backends/imgui_impl_opengl3.cpp",
+		"backends/imgui_impl_vulkan.cpp",
 		"backends/imgui_impl_opengl3.h",
+		"backends/imgui_impl_vulkan.h",
 		"backends/imgui_impl_glfw.h",
 		"backends/imgui_impl_glfw.cpp",
 	}
 	includedirs
 	{
 		"%{prj.location}",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+	    os.getenv("VULKAN_SDK") ..  "/Include"
 
 	}
 
+	libdirs
+    {
+        os.getenv("VULKAN_SDK") ..  "/Lib",
+    }
 	filter "system:windows"
 		systemversion "latest"
 		cppdialect "C++17"
