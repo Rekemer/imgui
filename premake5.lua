@@ -33,11 +33,12 @@ project "ImGui"
 	    os.getenv("VULKAN_SDK") ..  "/Include"
 
 	}
-
 	libdirs
     {
         os.getenv("VULKAN_SDK") ..  "/Lib",
+       "%{wks.location}/Dependencies/GLFW/lib-vc2019",
     }
+	links{ "glfw3dll.lib"}
 	filter "system:windows"
 		systemversion "latest"
 		cppdialect "C++17"
